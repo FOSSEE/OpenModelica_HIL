@@ -1,0 +1,72 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\newcommand\inv[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+
+
+\title{Equation of Motions already included}
+\begin{document}
+\maketitle
+
+These are the equations already included the 6DOF model.
+
+\[
+C_{b/n}=
+  \begin{bmatrix}
+    cos(\theta)cos(\psi) & cos(\theta)sin(\psi) & -sin(\theta) \\
+    -cos(\phi)sin(\psi) + sin(\phi)sin(\theta)cos(\psi) & cos(\phi)cos(\psi) + sin(\phi)sin(\theta)sun(\psi) & sin(\phi)cos(\theta) \\
+    sin(\phi)sin(\psi) + cos(\phi)sin(\theta)cos(\psi) & -sin(\phi)cos(\psi) + cos(\phi)sin(\theta)sin(\psi) & cos(\phi)cos(\theta)
+  \end{bmatrix}
+\]\\
+Also represented as: $C_{b/n} = fn(\Theta)$
+\\
+\[
+\Omega=
+  \begin{bmatrix}
+    0 & -R & Q \\
+    R & 0 & -P\\
+    -Q & P & 0
+  \end{bmatrix}
+\]
+\\
+\[
+\left[ \begin{array}{c} 
+   \dot{\phi}
+\\ \dot{\theta}
+\\ \dot{\psi}
+ \end{array} \right] = \begin{bmatrix} 1 & tan(\theta)sin(\phi) & tan(\theta)cos(\phi) \\ 0 & cos(\phi) & -sin(\phi)\\
+0 &  sin(\phi)/cos(\theta) & cos(\phi)/cos(\theta)
+  \end{bmatrix} \times \left[ \begin{array}{c} P\\Q \\ R \end{array} \right]
+\\
+\]
+\\ Also represented as: $\dot{\Phi} = H(\Phi) \omega^b _{b/e}$
+\\
+\\
+${}^b\dot{v}^b_{CM/e} =(\frac{1}{m})F^b_{A,T} + C_{b/n} \times g + \Omega^b _{b/e}\times v^b_{CM/e} $
+\\ \\
+${}^e \dot{p}^n_{CM/T} = C_{n/b} \times v^b_{CM/e} $
+\\ \\
+${}^b\dot{\omega}^b_{b/e} = inv(J^b) \times [M^b_{A,T}- \Omega^b_{b/e}\times J^b \times \omega^b_{b/e}]$
+\\
+
+These are the equations in the force-moment model.
+
+$\alpha = tan^-1 (w/u) $
+\\
+$Q = 0.5 \times \rho \times \lVert V \rVert ^2 $
+\\\\
+$C_{L} = C_{L0} + C_{L \alpha} \times \alpha + (\frac{C_{Lq} \times q \times c_{bar}}{2 \times \lVert V \rVert}) + C_{Lde} \times \delta_{e}  $
+\\
+$C_{m} = C_{m0} + C{m \alpha} \times \alpha +(\frac{C_{mq}*q*c_{bar}}{(2 \times \lVert V \rVert})+C_{mde} \times \delta_{e}$
+\\
+$C_{D}  = C_{D0} + K_{drag} \times C_{L} ^2$
+\\ \\
+$L = C_{L} \times s \times Q$
+\\ 
+$D = C_{D} \times s \times Q$
+\\ \\
+$Force = \left[ \begin{array}{c} -D \times cos(\alpha)+L \times sin(\alpha)+ thrust - mg \times sin(\theta)\\0 \\ -D \times sin(\alpha)-L \times cos(\alpha)+mg \times cos(\theta) \end{array} \right]$
+\\ \\
+$Moment  = \left[ \begin{array}{c} 0\\C_{m} \times s\times c_{bar} \times Q \\ 0 \end{array} \right]$
+
+ \end{document}

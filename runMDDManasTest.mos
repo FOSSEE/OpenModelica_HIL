@@ -1,0 +1,11 @@
+loadModel(Modelica);
+getErrorString();
+
+loadFile("/home/siddharth/Downloads/Modelica_DeviceDrivers/Modelica_DeviceDrivers/package.mo");
+getErrorString();
+
+loadFile("/home/siddharth/Modelica-H-I-L-Tasks/ManasTestModel.mo");
+getErrorString();
+
+translateModel(ManasTestModel, fileNamePrefix="ManasTest");
+getErrorString();
